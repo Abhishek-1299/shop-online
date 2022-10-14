@@ -44,6 +44,12 @@
           <li class="nav-item">
             <%= link_to "Edit Profile", edit_user_registration_path, class:"nav-link" %>
           </li>
+
+          <li class="nav-item">
+            <%= link_to "Cart", cart_path, class:"nav-link" %>
+          </li>
+          
+
          <% else %>
           <li class="nav-item">
           <%= link_to "Sign Up", new_user_registration_path, class:"nav-link" %>
@@ -51,10 +57,14 @@
 
           <li class="nav-item">
           <%= link_to "Sign In", new_user_session_path, class:"nav-link" %>
-          </li>
-        <% end %>
+          </li> 
+
+
+        <% end %>    
 
       </ul>
+
+
       
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -64,7 +74,7 @@
   </div>
 </nav>
 
-
+<%= @email %>
 
 
     <% if notice.present? %><p class="notice"><%= notice %></p><% end %>
@@ -76,3 +86,5 @@
     </div>
   </body>
 </html>
+
+

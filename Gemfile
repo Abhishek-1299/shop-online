@@ -78,3 +78,5 @@ gem "sassc-rails"
 
 
 gem 'activeadmin'
+
+gem 'razorpay'

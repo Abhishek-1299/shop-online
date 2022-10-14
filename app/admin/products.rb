@@ -24,8 +24,9 @@ ActiveAdmin.register Product do
     column :desc
 
     column :image do |product|
-      
-      image_tag product.image, width: '75', height: '75'
+      if product.image.present?
+        image_tag product.image, width: '75', height: '75'
+      end
     end
 
     column :created_at
