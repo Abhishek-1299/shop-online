@@ -1,3 +1,4 @@
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -80,3 +81,10 @@ gem "sassc-rails"
 gem 'activeadmin'
 
 gem 'razorpay'
+
+# gem 'devise'
+gem 'devise-jwt'
+gem 'fast_jsonapi'
+gem 'rack-cors'
+
+gem "pundit", "~> 2.2"

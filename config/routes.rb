@@ -1,17 +1,46 @@
 Rails.application.routes.draw do
+  get 'current_user/index'
+  devise_for :users, path: '', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
+   controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
+  #devise_for :users, controllers: {
+  #    sessions: 'users/sessions',
+  #   registrations: 'users/registration'
+  #}
+  #devise_for :users
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+
+  get 'current_user/index'
+
   default_url_options :host => "localhost:3000"
   namespace :api do
     namespace :v1 do
       # get 'products/index'
       # get 'products/create'
       
-       resources :products
+       resources :products, only: [:index, :show]
        # only: [:show, :create, :index]
-      # get 'products/show'
-      get 'carts/index'
-      get 'carts/show'
-      get 'carts/create'
-      get 'carts/address', to: 'carts#address'
+       # get 'products/show'
+       get 'carts/index'
+       get 'carts/show'
+       # get 'carts/create'
+       # get 'carts/address', to: 'carts#address'
+
+      resources :carts do 
+        post "address_create", on: :collection
+      end
+
+      namespace :admin do
+        resources :products, only: [:create, :update, :destroy]
+      end
     end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -20,7 +49,6 @@ Rails.application.routes.draw do
   get 'home/users'
   get 'home/about'
   # resources :users;
-  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
