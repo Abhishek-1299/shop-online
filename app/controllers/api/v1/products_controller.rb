@@ -1,4 +1,4 @@
-class Api::V1::ProductsController < ApplicationController
+class Api::V1::ProductsController < Api::V1::ApiApplicationController
   # skip_before_action :verify_authenticity_token
 
   def index
@@ -14,8 +14,4 @@ class Api::V1::ProductsController < ApplicationController
       render json: {error: "not found product"}
     end
   end
-
-
-
-
 end

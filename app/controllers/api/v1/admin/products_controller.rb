@@ -1,6 +1,6 @@
-class Api::V1::Admin::ProductsController < ApplicationController
+class Api::V1::Admin::ProductsController < Api::V1::ApiApplicationController
 
-  # before_action :find_user
+  # before_action :current_user
 
 	def create
     product = Product.new(prod_params)
@@ -38,11 +38,10 @@ class Api::V1::Admin::ProductsController < ApplicationController
    private
    
 	  def prod_params
-	    params.require(:product).permit([:name, :price, :category_id, :desc, :image])
-	    #params.permit([:name, :price, :category_id, :desc, :image])
+	    params.permit([:name, :price, :category_id, :desc, :image])
 	  end
 
-    # def find_user
+    # def current_user
     #   jwt_payload = JWT.decode(request.headers['Authorization'].split(' ')[1], Rails.application.credentials.fetch(:secret_key_base)).first
     #   auth = jwt_payload['sub'].to_i
     #   @user = User.find(auth)

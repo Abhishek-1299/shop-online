@@ -1,4 +1,4 @@
-class OrderItemsController < ApplicationController
+class Api::V1::OrderItemsController < Api::V1::ApiApplicationController
 	before_action :find_cart_order
 	
 	def add_to_cart
@@ -23,6 +23,13 @@ class OrderItemsController < ApplicationController
       @order = current_user.orders.create(status: 'cart')
     end
     @order
+  end
+
+  def destroy
+    @order_item = @order.order_items.find(params[:id])
+    @order_item.destroy
+    return render json:@order_item, status: :ok
+    #redirect_to cart_path
   end
 
 end

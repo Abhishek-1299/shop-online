@@ -1,4 +1,5 @@
-class Api::V1::CartsController < ApplicationController
+class Api::V1::CartsController < Api::V1::ApiApplicationController
+
   def index
     orders = Order.all
     render json: orders, status:200
@@ -19,6 +20,13 @@ class Api::V1::CartsController < ApplicationController
        return render json: @address ,status: :ok
     else
       return render json: @address.errors, status: :unprocessable_entity
+    end
+  end
+
+  def remove_address
+    @address = Address.find(params[:id])
+    if @address.destroy
+      render json: {message: 'address deleted successfully' }
     end
   end
 

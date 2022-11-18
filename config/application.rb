@@ -1,5 +1,7 @@
 require_relative "boot"
 
+
+
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -23,5 +25,7 @@ module ShopOnline
      # config.session_store :cookie_store, key: '_interslice_session'
      # config.middleware.use ApplicationDispatch::Cookies
      # config.middleware.use config.session_store, config.session_options
+    config.autoloader = :classic
   end
 end
+

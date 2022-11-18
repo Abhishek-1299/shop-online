@@ -82,7 +82,7 @@ gem 'activeadmin'
 
 gem 'razorpay'
 
-# gem 'devise'
+ 
 gem 'devise-jwt'
 gem 'fast_jsonapi'
 gem 'rack-cors'

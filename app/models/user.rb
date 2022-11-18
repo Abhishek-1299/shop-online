@@ -11,6 +11,7 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
   has_many :orders
   has_many :addresses
+  has_one :cart
 
   enum :role, [:user, :admin]
 

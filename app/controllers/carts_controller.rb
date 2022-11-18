@@ -4,6 +4,7 @@ class CartsController < ApplicationController
   before_action :find_all_address, only: [:address, :address_create]
 
   def cart
+  	
 	end
 
 	def index
@@ -31,6 +32,13 @@ class CartsController < ApplicationController
 			render :address, status: :unprocessable_entity
 		end
 	end
+
+	def remove_address
+    @address = Address.find(params[:address_id])
+    if @address.destroy
+      redirect_to carts_address_path, notice: "address removed"
+    end
+  end
 
   def assign_address
     @order.update(assign_address_params)
