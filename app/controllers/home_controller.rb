@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
+  
   def index
-
     respond_to do |format|
       format.html {
-        @products = Product.all
+        @products = Product.where("LOWER(name) LIKE ? OR price LIKE ?", params[:search.downcase] + "%", params[:search] + "%") if params[:search].present?
+        @products = Product.all if !params[:search].present?
         if current_user.present?
           @email = current_user.email
         end
@@ -14,9 +15,7 @@ class HomeController < ApplicationController
     end
   end
 
-
     #@order_item = current_order.order_items
-  # end
 
   def about
   end

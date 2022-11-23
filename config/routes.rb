@@ -84,6 +84,7 @@ Rails.application.routes.draw do
   # end
   
   get '/products', to: 'home#index'
+  #get '/search', to: 'home#search'
 
   get '/order_items/:product_id/add_to_cart', to: 'order_items#add_to_cart', as: :add_to_cart
   delete '/order_items/:id', to: 'order_items#destroy', as: :remove_order_item

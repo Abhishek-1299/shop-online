@@ -2,7 +2,8 @@ class RazorpayPayment
 	require 'razorpay'
 		
 	def initialize
-		Razorpay.setup('rzp_test_ZrT7bSS6LMCvO2', 'IoGZ2x9TzWgzIaEgQrQAKRlY')
+		#Razorpay.setup('rzp_test_ZrT7bSS6LMCvO2', 'IoGZ2x9TzWgzIaEgQrQAKRlY')
+	Razorpay.setup('rzp_test_jgok7moG1vXEGD', 'ZrjRVbWdWMy7omrIHEG7Nsky')
 	end 
 
 	def create_razorpay_order(total)
