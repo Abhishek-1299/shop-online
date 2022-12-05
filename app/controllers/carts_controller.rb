@@ -59,6 +59,7 @@ class CartsController < ApplicationController
 		response = razorpay_payment.verify_payment_status(params[:razorpay_order_id], params[:razorpay_payment_id], params[:razorpay_signature])
 		if response
 			@order.update(status: :complete)
+			OrderMailer.order_completed(current_user).deliver_now
 			redirect_to carts_complete_path
 		end
 	end

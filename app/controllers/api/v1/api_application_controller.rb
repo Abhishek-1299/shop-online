@@ -7,7 +7,7 @@ class Api::V1::ApiApplicationController < ActionController::Base
 
 	private
 
-		def current_user
+	def current_user
       jwt_payload = JWT.decode(request.headers['Authorization'].split(' ')[1], Rails.application.credentials.fetch(:secret_key_base)).first
       auth = jwt_payload['sub'].to_i
       @user = User.find(auth)
