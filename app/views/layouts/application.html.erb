@@ -38,7 +38,7 @@
 
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Sign Out", destroy_user_session_path, class:"nav-link" %>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link" %>
           </li>
 
           <li class="nav-item">
@@ -48,6 +48,11 @@
           <li class="nav-item">
             <%= link_to "Cart", cart_path, class:"nav-link" %>
           </li>
+
+          <li class="nav-item">
+            <%= @email %>
+          </li>
+          
           
 
          <% else %>
@@ -64,18 +69,33 @@
 
       </ul>
 
+  <form class="d-flex">
+    <%= form_with url: '/home/index', method: :get, local: true do |form| %>
+        <div class="form-group">
+          <%= form.text_field :search, class: "form-control", style: "height: 3rem" %>
+        </div>
+        <div class="form-group">
+          <%= form.submit "Search", class: "btn btn-primary btn-lg"%>&nbsp &nbsp &nbsp 
+        </div>
+    <% end %> 
+  </form>
 
-      
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
-  </div>
+
+  <form class="d-flex">
+    <%= form_with url: '/home/index', method: :get, local: true do |form| %>
+        <h6 style="color:white;">Categories :</h6> &nbsp
+        <div class="form-group">
+          <%= form.collection_select(:category_id, Category.all, :id, :name, {include_blank: true} , onchange: "this.form.submit();")  %>
+        </div> &nbsp &nbsp
+    <% end %> 
+  </form>
+  <h6><%= link_to "go to Home", root_url%></h6>
+  </div> &nbsp
+
 </nav>
 
 <%= @email %>
-
 
     <% if notice.present? %><p class="notice"><%= notice %></p><% end %>
     <% if alert.present? %><p class="alert"><%= alert %></p><% end %>

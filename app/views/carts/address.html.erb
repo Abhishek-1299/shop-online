@@ -28,6 +28,8 @@
             <%= address.city %> ,
             <%= address.house_no %> ,
             <%= address.colony_name %> 
+            <%= link_to 'delete', carts_address_destroy_path(address_id: address.id), method: :delete %>
+            <!-- data: { "turbo-method": :delete } -->
           <br/><br/><br/>
         </div>
         <% end %>

@@ -1,5 +1,5 @@
 class OrderItemsController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :find_cart_order
 
   def add_to_cart

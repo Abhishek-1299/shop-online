@@ -4,6 +4,7 @@ class CartsController < ApplicationController
   before_action :find_all_address, only: [:address, :address_create]
 
   def cart
+  	
 	end
 
 	def index
@@ -32,6 +33,13 @@ class CartsController < ApplicationController
 		end
 	end
 
+	def remove_address
+    @address = Address.find(params[:address_id])
+    if @address.destroy
+      redirect_to carts_address_path, notice: "address removed"
+    end
+  end
+
   def assign_address
     @order.update(assign_address_params)
     redirect_to  carts_payment_path
@@ -51,6 +59,7 @@ class CartsController < ApplicationController
 		response = razorpay_payment.verify_payment_status(params[:razorpay_order_id], params[:razorpay_payment_id], params[:razorpay_signature])
 		if response
 			@order.update(status: :complete)
+			OrderMailer.order_completed(current_user).deliver_now
 			redirect_to carts_complete_path
 		end
 	end

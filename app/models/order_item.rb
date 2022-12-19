@@ -21,7 +21,7 @@ class OrderItem < ApplicationRecord
 	def calc_totals
   	current_order_total = 0
 		order.order_items.each do |order_item|
-    current_order_total += order_item.total.to_i
+    	current_order_total += order_item.total.to_i
 		end
   	order.update(total: current_order_total)
 	end
