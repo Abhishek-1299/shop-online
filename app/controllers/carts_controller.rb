@@ -60,6 +60,11 @@ class CartsController < ApplicationController
 		if response
 			@order.update(status: :complete)
 			OrderMailer.order_completed(current_user).deliver_now
+			phone = @order.address.phone_number.to_s
+			code = "+91"
+			phone_code = code + phone
+			t= TwilioSms.new(phone_code,"hii")
+			t.send_message
 			redirect_to carts_complete_path
 		end
 	end

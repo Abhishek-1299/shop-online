@@ -88,3 +88,7 @@ gem 'fast_jsonapi'
 gem 'rack-cors'
 
 gem "pundit", "~> 2.2"
+
+#for sms send
+gem 'twilio-ruby'
+gem 'dotenv'
