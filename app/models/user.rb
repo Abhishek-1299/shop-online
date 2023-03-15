@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  include Devise::JWT::RevocationStrategies::JTIMatcher
+  #include Devise::JWT::RevocationStrategies::JTIMatcher
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,8 +15,9 @@ class User < ApplicationRecord
 
   enum :role, [:user, :admin]
 
-  def jwt_payload
-    super.merge('foo' => 'bar')
-  end
+  # def jwt_payload
+  #      debugger
+  #   super.merge('foo' => 'bar')
+  # end
 end
 

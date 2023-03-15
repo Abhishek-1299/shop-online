@@ -115,6 +115,7 @@ GEM
     devise-jwt (0.10.0)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.6)
+    dotenv (2.8.1)
     dry-auto_inject (0.9.0)
       dry-container (>= 0.3.4)
     dry-configurable (0.16.1)
@@ -127,6 +128,10 @@ GEM
       zeitwerk (~> 2.6)
     erubi (1.11.0)
     execjs (2.8.1)
+    faraday (2.7.2)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
     ffi (1.15.5)
@@ -205,6 +210,7 @@ GEM
     nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pg (1.4.5)
     popper_js (2.11.6)
     public_suffix (5.0.0)
     puma (5.6.5)
@@ -281,7 +287,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.5.3-x86_64-linux)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -291,6 +296,10 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
+    twilio-ruby (5.74.1)
+      faraday (>= 0.9, < 3.0)
+      jwt (>= 1.5, <= 2.6)
+      nokogiri (>= 1.6, < 2.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -328,11 +337,13 @@ DEPENDENCIES
   debug
   devise
   devise-jwt
+  dotenv
   fast_jsonapi
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
   jquery-rails
+  pg
   puma (~> 5.0)
   pundit (~> 2.2)
   rack-cors
@@ -341,9 +352,9 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   sprockets-rails
-  sqlite3 (~> 1.4)
   stimulus-rails
   turbo-rails
+  twilio-ruby
   tzinfo-data
   web-console
   webdrivers

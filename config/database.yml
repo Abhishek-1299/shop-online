@@ -1,25 +1,36 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV["RAILS_DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+  idle_timeout: <%= ENV["RAILS_IDLE_CONNECTION"] ||  60 %>
+  port: <%= ENV['RAILS_DATABASE_PORT'] || 5432 %>
 
+
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: shop_online_development
+  username: postgres
+  password: postgres
+  host: 'localhost'
+  port: 5432
+  #secret_key_base: ffaf9d8b3cf5de9f4ac69fb1467aca08e72323593021c5d493e28a4fbaa6269a2e6c6770305f9974a62e63d869871d77603af701c8c88fc5327bb63c10f86aa2
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: shop_online_test
+  username: postgres
+  password: postgres
+  host: 'localhost'
+  port: 5432
+ # secret_key_base: ffaf9d8b3cf5de9f4ac69fb1467aca08e72323593021c5d493e28a4fbaa6269a2e6c6770305f9974a62e63d869871d77603af701c8c88fc5327bb63c10f86aa2
 
-production:
+  production:
   <<: *default
-  database: db/production.sqlite3
+  database: shop_online_production
+  username: postgres
+  password: postgres
+  host: 'localhost'
+  port: 5432
+  secret_key_base: xyz
